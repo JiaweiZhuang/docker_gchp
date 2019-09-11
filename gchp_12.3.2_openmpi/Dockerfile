@@ -12,6 +12,9 @@ COPY ./gchp.gcc_openmpi.env $TOP_DIR/gchp.env
 # https://github.com/geoschem/gchp/issues/40
 RUN ln -s $(spack location -i hdf5)/lib/* $(spack location -i netcdf)/lib/
 
+# Otherwise will fail at linking '-lz'
+RUN yum install -y zlib-devel
+
 WORKDIR $TOP_DIR
 
 RUN git clone https://github.com/geoschem/geos-chem.git Code.GCHP \
