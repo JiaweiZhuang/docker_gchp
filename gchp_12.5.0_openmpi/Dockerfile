@@ -15,6 +15,9 @@ WORKDIR $TOP_DIR
 RUN ln -s $(spack location -i hdf5)/lib/* $(spack location -i netcdf)/lib/
 RUN yum install -y zlib-devel
 
+# https://github.com/geoschem/gchp/issues/39
+RUN yum install -y lapack-devel blas-devel
+
 # neede CMake for gFTL
 RUN yum install -y cmake
 
